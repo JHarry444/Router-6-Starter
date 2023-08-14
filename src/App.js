@@ -5,7 +5,6 @@ import 'popper.js';
 import 'jquery';
 import './Components/css/qa.css';
 import axios from 'axios';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Header from './Components/Header';
 import Footer from './Components/Footer';
@@ -68,21 +67,19 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <>
       {getError && <Modal handleClose={() => setGetError(``)} message={getError} />}
       {putError && <Modal handleClose={() => setPutError(``)} message={putError} />}
       {postError && <Modal handleClose={() => setPostError(``)} message={postError} />}
       <div className="container">
         <Header />
         <div className="container">
-          <Routes>
-            <Route path='/add' render={<AllTodos data={todos} selectTodo={selectTodo} />} />
-          </Routes>
+          <AllTodos data={todos} selectTodo={selectTodo} />
           <AddEditTodo submitTodo={submitTodo} updateTodo={updateTodo} todo={todoToEdit} />
         </div>
         <Footer />
       </div>
-    </BrowserRouter>
+    </>
   );
 }
 
